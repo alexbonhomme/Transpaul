@@ -1,0 +1,14 @@
+body {
+	margin: 0; padding: 0;
+	min-width: 280px;
+	height: auto;
+	overflow-x: hidden;
+}
+img {
+	margin: 0; padding: 0;
+	vertical-align: middle;
+	width: 280px;
+}
+.table {
+	margin-bottom: 0;
+}

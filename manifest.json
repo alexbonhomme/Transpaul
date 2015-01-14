@@ -13,7 +13,7 @@
     "https://www.kimonolabs.com/"
   ],
   "content_scripts": [ {
-    "js": [ "jquery.min.js", "moment.min.js", "transpaul.js" ],
-    "matches": [ "http://*/*", "https://*/*"]
+    "js": ["js/jquery.min.js", "js/moment.min.js", "js/bootstrap.min.js", "js/transpaul.js"],
+    "matches": ["http://*/*", "https://*/*"]
   }]
 }
