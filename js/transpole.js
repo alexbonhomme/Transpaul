@@ -36,44 +36,44 @@
 				});
     			break;
 
-    		case 'itinerary':
-                // http://transpole.prod.navitia.com/navitia/ITI_2_AnswersList.asp?DPoint=StopArea|5034&APoint=StopArea|4987&Date=2015|01|24&Time=1|16|35&Criteria=1|50|&Mode=Bus&DateFinBases=2015|07|04&DateMajBases=2015|01|24
+    // 		case 'itinerary':
+    //             // http://transpole.prod.navitia.com/navitia/ITI_2_AnswersList.asp?DPoint=StopArea|5034&APoint=StopArea|4987&Date=2015|01|24&Time=1|16|35&Criteria=1|50|&Mode=Bus&DateFinBases=2015|07|04&DateMajBases=2015|01|24
     			
-                var parameters = {
-			        Time: moment().format('1|H|mm'),
-			        Date: moment().format('YYYY|MM|DD'),
-			        DPoint: 'StopArea|5034|Euratechnologies|Lomme',
-			        APoint: 'StopArea|4987|République Beaux Arts|Lille',
-                    Mode: 'Bus'
-                };
+    //             var parameters = {
+			 //        Time: moment().format('1|H|mm'),
+			 //        Date: moment().format('YYYY|MM|DD'),
+			 //        DPoint: 'StopArea|5034|Euratechnologies|Lomme',
+			 //        APoint: 'StopArea|4987|République Beaux Arts|Lille',
+    //                 Mode: 'Bus'
+    //             };
 
-			    $.ajax({
-			    	url: encodeURI(API_BASE + '?apikey=' + API_KEY + 
-						    				  '&Time=' + parameters.Time + 
-						    				  '&Date=' + parameters.Date +
-						    				  '&DPoint=' + parameters.DPoint +
-						    				  '&APoint=' + parameters.APoint +
-                                              '&Mode=' + parameters.Mode), 
-			    	method: 'GET',
-					success: function(data){
-			    		var timeTables = removesPassedTimetables(data.results.collection1);
+			 //    $.ajax({
+			 //    	url: encodeURI(API_BASE + '?apikey=' + API_KEY + 
+				// 		    				  '&Time=' + parameters.Time + 
+				// 		    				  '&Date=' + parameters.Date +
+				// 		    				  '&DPoint=' + parameters.DPoint +
+				// 		    				  '&APoint=' + parameters.APoint +
+    //                                           '&Mode=' + parameters.Mode), 
+			 //    	method: 'GET',
+				// 	success: function(data){
+			 //    		var timeTables = removesPassedTimetables(data.results.collection1);
 
-			    		if (timeTables.length == 0) {
-			    			dom = '<img src="assets/dawson-crying.jpg"/><p class="bus-not-found">Aucun bus trouvé...</p>';
-			    			return;
-			    		}
+			 //    		if (timeTables.length == 0) {
+			 //    			dom = '<img src="assets/dawson-crying.jpg"/><p class="bus-not-found">Aucun bus trouvé...</p>';
+			 //    			return;
+			 //    		}
 
-				        dom = buildTableDOMFromData(timeTables);
+				//         dom = buildTableDOMFromData(timeTables);
 
-			        	thisObject.each(function () {
-				        	// console.log(dom)
-				        	$(this).html(dom);
-				        });
-				    }
-				});
-    			break;
+			 //        	thisObject.each(function () {
+				//         	// console.log(dom)
+				//         	$(this).html(dom);
+				//         });
+				//     }
+				// });
+    // 			break;
 
-            case 'itinerary-mobi':
+            case 'itinerary':
 // http://www.transpole.mobi/index.php
 // ?id=691
 // &tx_icsnavitiajourney_pi1[startName]=République Beaux Arts
