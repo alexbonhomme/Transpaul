@@ -15,10 +15,10 @@
 					method: 'POST',
 					data: 'id=' + API_USERID,
 					success: function(data){
-						// console.log('succes: '+data);
+						console.log('succes: '+data);
 						// $('#data').html(data);
 
-						if (data != "0") {
+						if (data != 0) {
 							xmlDoc = $.parseXML(data);
 							$xml = $(xmlDoc);
 							
