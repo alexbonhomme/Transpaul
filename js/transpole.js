@@ -5,6 +5,8 @@
 
     // Transpole
 	var API_USERID = '20150122212655462'
+
+    var API_MOBI_BASE = 'http://www.transpole.mobi'
  
     $.fn.transpole = function (action) {
  		var thisObject = this;
@@ -35,21 +37,23 @@
     			break;
 
     		case 'itinerary':
-    			var parameters = {
+                // http://transpole.prod.navitia.com/navitia/ITI_2_AnswersList.asp?DPoint=StopArea|5034&APoint=StopArea|4987&Date=2015|01|24&Time=1|16|35&Criteria=1|50|&Mode=Bus&DateFinBases=2015|07|04&DateMajBases=2015|01|24
+    			
+                var parameters = {
 			        Time: moment().format('1|H|mm'),
 			        Date: moment().format('YYYY|MM|DD'),
-			        DPoint: 'StopArea|4930|Euratechnologies|Lomme|||648347|2626790|7673!0!14;7672!0!14;',
-			        // DPoint: 'StopArea%7C4930%7CEuratechnologies%7CLomme%7C%7C%7C648347%7C2626790%7C7673%210%2114%3B7672%210%2114%3B',
-			        APoint: 'StopArea|4883|République Beaux Arts|Lille|||651349|2626621|7565!0!14;7567!0!14;7564!0!14;7566!0!14;7563!0!14;',
-			        // APoint: 'StopArea%7C4883%7CR%E9publique%20Beaux%20Arts%7CLille%7C%7C%7C651349%7C2626621%7C7565%210%2114%3B7567%210%2114%3B7564%210%2114%3B7566%210%2114%3B7563%210%2114%3B'
-			    };
+			        DPoint: 'StopArea|5034|Euratechnologies|Lomme',
+			        APoint: 'StopArea|4987|République Beaux Arts|Lille',
+                    Mode: 'Bus'
+                };
 
 			    $.ajax({
 			    	url: encodeURI(API_BASE + '?apikey=' + API_KEY + 
 						    				  '&Time=' + parameters.Time + 
 						    				  '&Date=' + parameters.Date +
 						    				  '&DPoint=' + parameters.DPoint +
-						    				  '&APoint=' + parameters.APoint), 
+						    				  '&APoint=' + parameters.APoint +
+                                              '&Mode=' + parameters.Mode), 
 			    	method: 'GET',
 					success: function(data){
 			    		var timeTables = removesPassedTimetables(data.results.collection1);
@@ -68,12 +72,63 @@
 				    }
 				});
     			break;
+
+            case 'itinerary-mobi':
+// http://www.transpole.mobi/index.php
+// ?id=691
+// &tx_icsnavitiajourney_pi1[startName]=République Beaux Arts
+// &tx_icsnavitiajourney_pi1[startCity]=Lille
+// &tx_icsnavitiajourney_pi1[entryPointStart]=2
+// &tx_icsnavitiajourney_pi1[arrivalName]=Euratechnologie
+// &tx_icsnavitiajourney_pi1[arrivalCity]=Lomme
+// &tx_icsnavitiajourney_pi1[entryPointArrival]=0
+// &tx_icsnavitiajourney_pi1[isStartTime]=1
+// &tx_icsnavitiajourney_pi1[date]=24/01/2015
+// &tx_icsnavitiajourney_pi1[hour]=17h37
+// &tx_icsnavitiajourney_pi1[mode][]=Bus
+// &tx_icsnavitiajourney_pi1[criteria]=1
+                var params = {
+                    'id': '691',
+                    'tx_icsnavitiajourney_pi1[startName]': 'République Beaux Arts',
+                    'tx_icsnavitiajourney_pi1[startCity]': 'Lille',
+                    'tx_icsnavitiajourney_pi1[entryPointStart]': '2',
+                    'tx_icsnavitiajourney_pi1[arrivalName]': 'Euratechnologie',
+                    'tx_icsnavitiajourney_pi1[arrivalCity]': 'Lomme',
+                    'tx_icsnavitiajourney_pi1[entryPointArrival]': '0',
+                    'tx_icsnavitiajourney_pi1[isStartTime]': '1',
+                    'tx_icsnavitiajourney_pi1[date]': moment().format('DD/MM/YYYY'),
+                    'tx_icsnavitiajourney_pi1[hour]': moment().format('H:mm').replace(':', 'h'),
+                    'tx_icsnavitiajourney_pi1[mode][]': 'Bus',
+                    'tx_icsnavitiajourney_pi1[criteria]': '1'                    
+                };
+                $.ajax({
+                    url: API_MOBI_BASE + '/index.php' + buildUrlParamsFromObject(params), 
+                    method: 'GET',
+                    success: function(data){
+                        dom = $(data);
+                        // console.log(html);
+                        // $('#data').html(data);
+                        $('#data').html(dom.find('.tx_icsnavitiajourney_pi1_resultsList').html());
+                    }
+                });
+                break;
+
     		default:
     			break;
     	}
 
         return this;
     };
+
+    function buildUrlParamsFromObject (paramsObj) {
+        var urlParams = [];
+
+        Object.keys(paramsObj).forEach(function (key) {
+            urlParams.push(key + '=' + paramsObj[key]);
+        });
+
+        return '?' + urlParams.join('&');
+    }
 
     function buildFavoris (docXml) {
 		var string_html = "";

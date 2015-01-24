@@ -1,4 +1,4 @@
 $(function() {
-	$('#data').transpole('favoris');
-	// $('#data').transpole('itinerary');
+	// $('#data').transpole('favoris');
+	$('#data').transpole('itinerary');
 });
