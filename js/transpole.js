@@ -101,14 +101,15 @@
                     'tx_icsnavitiajourney_pi1[mode][]': 'Bus',
                     'tx_icsnavitiajourney_pi1[criteria]': '1'                    
                 };
+                var thisElement = $(this);
                 $.ajax({
                     url: API_MOBI_BASE + '/index.php' + buildUrlParamsFromObject(params), 
                     method: 'GET',
                     success: function(data){
-                        dom = $(data);
-                        // console.log(html);
-                        // $('#data').html(data);
-                        $('#data').html(dom.find('.tx_icsnavitiajourney_pi1_resultsList').html());
+                        var rawDom = $(data).find('.tx_icsnavitiajourney_pi1_resultsList');
+                        var tableDom = buildTableDomFromRawDom(rawDom);
+
+                        thisElement.html(tableDom);
                     }
                 });
                 break;
@@ -128,6 +129,34 @@
         });
 
         return '?' + urlParams.join('&');
+    }
+
+    function buildTableDomFromRawDom (dom) {
+        var tableDom = $('\
+            <table class="table">\
+                <thead>\
+                    <tr>\
+                      <th>Départ</th>\
+                      <th>Durée</th>\
+                      <th>Arrivée</th>\
+                    </tr>\
+                </thead>\
+                <tbody></tbody>\
+            </table>');
+
+        var rows = dom.find('.tx_icsnavitiajourney_pi1_scheduleInfo');
+        rows.each(function () {
+            var trDom = $('\
+                <tr>\
+                    <td>' + $(this).find('.tx_icsnavitiajourney_pi1_startHour').text() + '</td>\
+                    <td>' + $(this).find('.tx_icsnavitiajourney_pi1_duration').text() + '</td>\
+                    <td>' + $(this).find('.tx_icsnavitiajourney_pi1_arrivalHour').text() + '</td>\
+                </tr>');
+
+            tableDom.find('tbody').append(trDom);
+        });
+
+        return tableDom;
     }
 
     function buildFavoris (docXml) {
