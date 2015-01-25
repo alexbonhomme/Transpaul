@@ -1,11 +1,8 @@
 (function($) {
-	// Kimonolabs
-	var API_BASE = 'https://www.kimonolabs.com/api/4c0vvu5c';
-    var API_KEY = 'XVR3AHVfhnrC71491JshKyvRTfs0W4VB';
-
     // Transpole
 	var API_USERID = '20150122212655462'
 
+    // Transpole mobile
     var API_MOBI_BASE = 'http://www.transpole.mobi'
  
     $.fn.transpole = function (action) {
@@ -35,43 +32,6 @@
 					}
 				});
     			break;
-
-    // 		case 'itinerary':
-    //             // http://transpole.prod.navitia.com/navitia/ITI_2_AnswersList.asp?DPoint=StopArea|5034&APoint=StopArea|4987&Date=2015|01|24&Time=1|16|35&Criteria=1|50|&Mode=Bus&DateFinBases=2015|07|04&DateMajBases=2015|01|24
-    			
-    //             var parameters = {
-			 //        Time: moment().format('1|H|mm'),
-			 //        Date: moment().format('YYYY|MM|DD'),
-			 //        DPoint: 'StopArea|5034|Euratechnologies|Lomme',
-			 //        APoint: 'StopArea|4987|République Beaux Arts|Lille',
-    //                 Mode: 'Bus'
-    //             };
-
-			 //    $.ajax({
-			 //    	url: encodeURI(API_BASE + '?apikey=' + API_KEY + 
-				// 		    				  '&Time=' + parameters.Time + 
-				// 		    				  '&Date=' + parameters.Date +
-				// 		    				  '&DPoint=' + parameters.DPoint +
-				// 		    				  '&APoint=' + parameters.APoint +
-    //                                           '&Mode=' + parameters.Mode), 
-			 //    	method: 'GET',
-				// 	success: function(data){
-			 //    		var timeTables = removesPassedTimetables(data.results.collection1);
-
-			 //    		if (timeTables.length == 0) {
-			 //    			dom = '<img src="assets/dawson-crying.jpg"/><p class="bus-not-found">Aucun bus trouvé...</p>';
-			 //    			return;
-			 //    		}
-
-				//         dom = buildTableDOMFromData(timeTables);
-
-			 //        	thisObject.each(function () {
-				//         	// console.log(dom)
-				//         	$(this).html(dom);
-				//         });
-				//     }
-				// });
-    // 			break;
 
             case 'itinerary':
 // http://www.transpole.mobi/index.php
@@ -240,30 +200,5 @@
     	});
 
 		return nextTimetable;
-    }
-
-    function buildTableDOMFromData (data) {
-    	var tableRows = '';
-        data.forEach(function (value) {
-        	tableRows += '\
-        		<tr>\
-        			<td>' + value['Départ'] + '</td>\
-        			<td>' + value['Durée'] + '</td>\
-        			<td>' + value['Arrivée'] + '</td>\
-        		</tr>';
-        });
-
-        var table = '\
-	        <table class="table">\
-	        	<thead>\
-			        <tr>\
-			          <th>Départ</th>\
-			          <th>Durée</th>\
-			          <th>Arrivée</th>\
-			        </tr>\
-			    </thead>\
-			    <tbody>' + tableRows + '</tbody>';
-        
-        return table;
     }
 }(jQuery));
