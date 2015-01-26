@@ -10,10 +10,8 @@
     "default_popup": "index.html"
   },
   "permissions": [
-    "https://www.kimonolabs.com/"
-  ],
-  "content_scripts": [ {
-    "js": ["js/jquery.min.js", "js/moment.min.js", "js/bootstrap.min.js", "js/transpaul.js", "js/transpole.js"],
-    "matches": ["http://*/*", "https://*/*"]
-  }]
+    "https://www.kimonolabs.com/",
+    "https://www.transpole.fr/",
+    "http://www.transpole.mobi/"
+  ]
 }
