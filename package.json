@@ -1,0 +1,15 @@
+{
+  "name": "transpaul",
+  "version": "2.0.0",
+  "description": "",
+  "main": "js/transpaul.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blckshrk/Transpaul.git"
+  },
+  "author": "Alexandre Bonhomme",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blckshrk/Transpaul/issues"
+  }
+}
