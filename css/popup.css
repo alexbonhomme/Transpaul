@@ -1,0 +1,37 @@
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 380px;
+	height: auto;
+	overflow-x: hidden;
+	font-size: 1em;
+}
+
+.transpaul {
+	padding: 10px;
+}
+
+.transpaul-loader {
+	margin: -10px;
+	padding: 0;
+	vertical-align: middle;
+	width: 380px;
+}
+
+.transpaul-stopname {
+	font-weight: bold;
+	font-size: 1.15em;
+}
+
+.transpaul-direction {
+	font-size: 0.8em;
+}
+
+.transpaul-nexts > h3 {
+	font-size: 1em;
+	margin-bottom: 5px;
+}
+
+.transpaul-next {
+	font-size: 0.9em;
+}
