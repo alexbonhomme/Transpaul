@@ -33,7 +33,9 @@
                 <h3>Prochains passages</h3>
 
                 {{#nexts}}
-                <div class="transpaul-next">{{next}}</div>
+                <div class="transpaul-next">
+                    <span class="transpaul-remaining">{{remaining}} min </span> ({{next}})
+                </div>
                 {{/nexts}}
             </div>
         </script>

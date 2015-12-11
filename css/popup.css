@@ -18,6 +18,23 @@ body {
 	width: 380px;
 }
 
+.transpaul-no-bus {
+	margin: -10px;
+	padding: 0;
+	width: 380px;
+}
+.transpaul-no-bus > img {
+	width: 100%;
+	vertical-align: middle;
+}
+.transpaul-no-bus > p {
+	margin: -50px 0 0 0;
+	color: white;
+	font-size: 1.8em;
+	text-align: center;
+	text-shadow:1px 1px 3px #333;
+}
+
 .transpaul-stopname {
 	font-weight: bold;
 	font-size: 1.15em;
@@ -29,9 +46,13 @@ body {
 
 .transpaul-nexts > h3 {
 	font-size: 1em;
-	margin-bottom: 5px;
 }
 
 .transpaul-next {
 	font-size: 0.9em;
+}
+
+.transpaul-remaining {
+	font-size: 1.4em;
+	font-weight: bold;
 }
