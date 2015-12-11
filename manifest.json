@@ -10,7 +10,6 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "https://www.kimonolabs.com/",
     "https://www.transpole.fr/",
     "http://www.transpole.mobi/"
   ]

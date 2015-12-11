@@ -11,5 +11,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/blckshrk/Transpaul/issues"
+  },
+  "dependencies": {
+    "mustache": "^2.2.0"
   }
 }
