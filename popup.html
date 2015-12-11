@@ -30,11 +30,17 @@
             </div>
 
             <div class="transpaul-nexts">
-                <h3>Prochains passages</h3>
-
                 {{#nexts}}
-                <div class="transpaul-next">
-                    <span class="transpaul-remaining">{{remaining}} min </span> ({{next}})
+                <div>
+                    <div class="pure-g">
+                        <div class="pure-u-1-5">
+                            {{#remainingFormatter}} {{remaining}} {{/remainingFormatter}}
+                        </div>
+                        <div class="pure-u-4-5">
+                            <div class="transpaul-next">{{next}}</div>
+                        </div>
+                    </div>
+
                 </div>
                 {{/nexts}}
             </div>

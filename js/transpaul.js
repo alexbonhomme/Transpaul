@@ -6,6 +6,21 @@
 
     var transpoleInstance = transpole();
 
+    function remainingFormatter() {
+        return function (text, render) {
+            var remaining = parseInt(render(text), 10),
+                remainingClass = 'transpaul-remaining';
+
+            if (remaining <= 5) {
+                remainingClass += ' transpaul-danger';
+            } else if (remaining <= 10) {
+                remainingClass += ' transpaul-warning';
+            }
+
+            return '<span class="' + remainingClass + '">' + remaining + ' min</span>';
+        };
+    }
+
     function formatData(data) {
         var nexts;
 
@@ -18,23 +33,28 @@
         });
 
         // MOCK
-        nexts = [
-            {
-                next: '22:40',
-                remaining: '5'
-            },
-            {
-                next: '22:55',
-                remaining: '15'
-            }
-        ];
+        // nexts = [
+        //     {
+        //         next: '22:40',
+        //         remaining: '5'
+        //     },
+        //     {
+        //         next: '22:45',
+        //         remaining: '10'
+        //     },
+        //     {
+        //         next: '22:50',
+        //         remaining: '15'
+        //     }
+        // ];
 
         return {
             lineName: data.lineName,
             lineMode: data.lineMode.toLowerCase(),
             stopName: data.stopName,
             direction: data.directions[0].stopName,
-            nexts: nexts
+            nexts: nexts,
+            remainingFormatter: remainingFormatter
         };
     }
 

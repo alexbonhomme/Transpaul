@@ -5,6 +5,7 @@ body {
 	height: auto;
 	overflow-x: hidden;
 	font-size: 1em;
+	color: #333;
 }
 
 .transpaul {
@@ -44,15 +45,26 @@ body {
 	font-size: 0.8em;
 }
 
-.transpaul-nexts > h3 {
+.transpaul-nexts {
+	margin-top: 15px;
+	padding-top: 10px;
+	border-top: 1px solid #c2c2c2;
 	font-size: 1em;
 }
 
 .transpaul-next {
-	font-size: 0.9em;
+	padding: 5px 15px;
 }
 
 .transpaul-remaining {
 	font-size: 1.4em;
 	font-weight: bold;
+}
+
+.transpaul-danger {
+	color: #8c3a2b;
+}
+
+.transpaul-warning {
+	color: #af9540;
 }
