@@ -87,4 +87,10 @@
 
     // API call
     transpoleInstance.getNext('18', '773', 'R').then(handleSuccess, handleError);
+
+    vlille.stations().then(function (data) {
+        console.log(data);
+    }, function (error) {
+        console.error(error);
+    });
 }());

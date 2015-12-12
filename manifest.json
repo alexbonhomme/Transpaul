@@ -11,6 +11,7 @@
   },
   "permissions": [
     "https://www.transpole.fr/",
-    "http://www.transpole.mobi/"
+    "http://www.transpole.mobi/",
+    "http://vlille.fr/"
   ]
 }
