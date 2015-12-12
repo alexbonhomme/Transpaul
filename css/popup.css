@@ -1,0 +1,70 @@
+body {
+	margin: 0;
+	padding: 0;
+	min-width: 380px;
+	height: auto;
+	overflow-x: hidden;
+	font-size: 1em;
+	color: #333;
+}
+
+.transpaul {
+	padding: 10px;
+}
+
+.transpaul-loader {
+	margin: -10px;
+	padding: 0;
+	vertical-align: middle;
+	width: 380px;
+}
+
+.transpaul-no-bus {
+	margin: -10px;
+	padding: 0;
+	width: 380px;
+}
+.transpaul-no-bus > img {
+	width: 100%;
+	vertical-align: middle;
+}
+.transpaul-no-bus > p {
+	margin: -50px 0 0 0;
+	color: white;
+	font-size: 1.8em;
+	text-align: center;
+	text-shadow:1px 1px 3px #333;
+}
+
+.transpaul-stopname {
+	font-weight: bold;
+	font-size: 1.15em;
+}
+
+.transpaul-direction {
+	font-size: 0.8em;
+}
+
+.transpaul-nexts {
+	margin-top: 15px;
+	padding-top: 10px;
+	border-top: 1px solid #c2c2c2;
+	font-size: 1em;
+}
+
+.transpaul-next {
+	padding: 5px 20px;
+}
+
+.transpaul-remaining-number {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+.transpaul-danger {
+	color: #8c3a2b;
+}
+
+.transpaul-warning {
+	color: #af9540;
+}
