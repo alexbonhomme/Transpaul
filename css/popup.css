@@ -53,10 +53,10 @@ body {
 }
 
 .transpaul-next {
-	padding: 5px 15px;
+	padding: 5px 20px;
 }
 
-.transpaul-remaining {
+.transpaul-remaining-number {
 	font-size: 1.4em;
 	font-weight: bold;
 }

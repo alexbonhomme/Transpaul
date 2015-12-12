@@ -4,12 +4,19 @@
 (function () {
     'use strict';
 
+    moment.locale('fr');
+
     var transpoleInstance = transpole();
 
+    /**
+     * Mustache formatter to apply specific class according to `remaining` value.
+     * @return {Function} [description]
+     */
     function remainingFormatter() {
         return function (text, render) {
             var remaining = parseInt(render(text), 10),
-                remainingClass = 'transpaul-remaining';
+                remainingClass = 'transpaul-remaining',
+                remainingHuman;
 
             if (remaining <= 5) {
                 remainingClass += ' transpaul-danger';
@@ -17,36 +24,31 @@
                 remainingClass += ' transpaul-warning';
             }
 
-            return '<span class="' + remainingClass + '">' + remaining + ' min</span>';
+            remainingHuman = '<span class="transpaul-remaining-number">' + remaining + '</span> ' + (remaining > 1 ? 'minutes' : 'minute');
+
+            return '<span class="' + remainingClass + '">' + remainingHuman + '</span>';
         };
     }
 
+    /**
+     * Formats Transpole data for Mustache template.
+     * @param  {Object} data [description]
+     * @return {Object}      [description]
+     */
     function formatData(data) {
-        var nexts;
+        var nexts = data.directions[0].nexts || [],
+            nowMoment = moment(data.refDate);
 
-        nexts = data.directions[0].nexts.map(function (next) {
+        // Formats `next` value into HH:mm
+        // Computes `remaining` value in minutes
+        nexts = nexts.map(function (next) {
             var nextMoment = moment(next.next);
+
             return {
                 next: nextMoment.format('HH:mm'),
-                remaining: nextMoment.subtract(moment()).format('m')
+                remaining: nextMoment.subtract(nowMoment).format('m')
             };
         });
-
-        // MOCK
-        // nexts = [
-        //     {
-        //         next: '22:40',
-        //         remaining: '5'
-        //     },
-        //     {
-        //         next: '22:45',
-        //         remaining: '10'
-        //     },
-        //     {
-        //         next: '22:50',
-        //         remaining: '15'
-        //     }
-        // ];
 
         return {
             lineName: data.lineName,
@@ -58,6 +60,10 @@
         };
     }
 
+    /**
+     * Updates DOM with Transpole data using Mustache template.
+     * @param  {Object} data [description]
+     */
     function handleSuccess(data) {
         var element = document.getElementById('transpaul'),
             template = document.getElementById('template.mst').innerHTML;
@@ -72,9 +78,13 @@
         element.innerHTML = Mustache.render(template, formatData(data));
     }
 
+    /**
+     * @param  {Object} error [description]
+     */
     function handleError(error) {
         console.error(error);
     }
 
-    transpoleInstance.getNext('18', '773', 'A').then(handleSuccess, handleError);
+    // API call
+    transpoleInstance.getNext('18', '773', 'R').then(handleSuccess, handleError);
 }());
