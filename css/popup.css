@@ -35,7 +35,8 @@ body {
 }
 
 .transpaul-icon {
-	width: 45px;
+	float: right;
+	width: 40px;
 }
 
 .transpaul-title {
@@ -69,8 +70,8 @@ body {
 }
 
 .transpole-nexts {
-	margin-top: 15px;
-	padding-top: 10px;
+	margin-top: 10px;
+	padding-top: 15px;
 	border-top: 1px solid #c2c2c2;
 	font-size: 1em;
 }
@@ -88,12 +89,12 @@ body {
  * vlille.js
  */
 .vlille-data {
-	margin-top: 1.5em;
+	margin-top: 1.6em;
 }
 
 .vlille-closest {
-	margin-top: 15px;
-	padding-top: 10px;
+	margin-top: 10px;
+	padding-top: 15px;
 	border-top: 1px solid #c2c2c2;
 	font-size: 1em;
 }
