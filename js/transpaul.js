@@ -78,11 +78,32 @@
         element.innerHTML = Mustache.render(template, formatTranspoleData(data));
     }
 
+    /**
+     * Formats Transpole data for Mustache template.
+     * @param  {Object} data [description]
+     * @return {Object}      [description]
+     */
+    function formatVlilleData(data) {
+        var stations = data.map(function (station) {
+            station.distance = station.distance.toFixed(2);
+
+            return station;
+        });
+
+        return {
+            stations: stations
+        };
+    }
+
+    /**
+     * Updates DOM with V'Lille data using Mustache template.
+     * @param  {Object} data [description]
+     */
     function handlerVlilleSuccess(data) {
         var element = document.getElementById('vlille-data'),
             template = document.getElementById('vlille.mst').innerHTML;
 
-        element.innerHTML = Mustache.render(template, data);
+        element.innerHTML = Mustache.render(template, formatVlilleData(data));
     }
 
     /**

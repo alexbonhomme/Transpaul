@@ -65,6 +65,21 @@
                     <img class="pure-img transpaul-icon" src="assets/logo_vlille.jpg">
                 </div>
             </div>
+
+            <div class="vlille-closest">
+                {{#stations}}
+                <div class="vlille-station">
+                    <div class="pure-g">
+                        <div class="pure-u-3-5">
+                            {{name}}
+                        </div>
+                        <div class="pure-u-2-5">
+                            {{distance}} m
+                        </div>
+                    </div>
+                </div>
+                {{/stations}}
+            </div>
         </script>
 
         <script src="node_modules/mustache/mustache.min.js"></script>
