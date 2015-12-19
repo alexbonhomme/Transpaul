@@ -85,7 +85,7 @@
      */
     function formatVlilleData(data) {
         var stations = data.map(function (station) {
-            station.distance = station.distance.toFixed(2);
+            station.distance = Math.round(station.distance);
 
             return station;
         });
@@ -117,6 +117,7 @@
      * APIs calls
      */
 
+    // requeste the 3 closest stations according to the current position
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             vlille.closestStations({
@@ -128,6 +129,6 @@
         console.error("Geolocation is not supported by this browser.");
     }
 
-    // Bus line 18
+    // Bus line 18 stop République
     transpoleInstance.getNext('18', '773', 'R').then(handleTranspoleSuccess, handleError);
 }());
