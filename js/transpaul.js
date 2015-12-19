@@ -117,16 +117,17 @@
      * APIs calls
      */
 
-    transpoleInstance.getNext('18', '773', 'R').then(handleTranspoleSuccess, handleError);
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
             vlille.closestStations({
                 lat: position.coords.latitude,
                 lon: position.coords.longitude
-            }).then(handlerVlilleSuccess, handleError);
+            }, 3).then(handlerVlilleSuccess, handleError);
         });
     } else {
         console.error("Geolocation is not supported by this browser.");
     }
+
+    // Bus line 18
+    transpoleInstance.getNext('18', '773', 'R').then(handleTranspoleSuccess, handleError);
 }());
