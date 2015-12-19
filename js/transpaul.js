@@ -1,5 +1,5 @@
 /*jslint browser:true*/
-/*global transpole, Mustache, moment*/
+/*global transpole, vlille, Mustache, moment*/
 
 (function () {
     'use strict';
@@ -15,7 +15,7 @@
     function remainingFormatter() {
         return function (text, render) {
             var remaining = parseInt(render(text), 10),
-                remainingClass = 'transpaul-remaining',
+                remainingClass = 'transpole-remaining',
                 remainingHuman;
 
             if (remaining <= 5) {
@@ -24,7 +24,7 @@
                 remainingClass += ' transpaul-warning';
             }
 
-            remainingHuman = '<span class="transpaul-remaining-number">' + remaining + '</span> ' + (remaining > 1 ? 'minutes' : 'minute');
+            remainingHuman = '<span class="transpole-remaining-number">' + remaining + '</span> ' + (remaining > 1 ? 'minutes' : 'minute');
 
             return '<span class="' + remainingClass + '">' + remainingHuman + '</span>';
         };
@@ -35,7 +35,7 @@
      * @param  {Object} data [description]
      * @return {Object}      [description]
      */
-    function formatData(data) {
+    function formatTranspoleData(data) {
         var nexts = data.directions[0].nexts || [],
             nowMoment = moment(data.refDate);
 
@@ -64,18 +64,25 @@
      * Updates DOM with Transpole data using Mustache template.
      * @param  {Object} data [description]
      */
-    function handleSuccess(data) {
-        var element = document.getElementById('transpaul'),
-            template = document.getElementById('template.mst').innerHTML;
+    function handleTranspoleSuccess(data) {
+        var element = document.getElementById('transpole-data'),
+            template = document.getElementById('transpole.mst').innerHTML;
 
         if (!data.directions[0].nexts) {
             // END OF SERVICE
-            element.innerHTML = '<div class="transpaul-no-bus"><img src="assets/dawson-crying.jpg"><p>Tous les bus sont partis :\'-(</p></div>';
+            element.innerHTML = '<div class="transpole-no-bus"><img src="assets/dawson-crying.jpg"><p>Tous les bus sont partis :\'-(</p></div>';
 
             return;
         }
 
-        element.innerHTML = Mustache.render(template, formatData(data));
+        element.innerHTML = Mustache.render(template, formatTranspoleData(data));
+    }
+
+    function handlerVlilleSuccess(data) {
+        var element = document.getElementById('vlille-data'),
+            template = document.getElementById('vlille.mst').innerHTML;
+
+        element.innerHTML = Mustache.render(template, data);
     }
 
     /**
@@ -85,12 +92,20 @@
         console.error(error);
     }
 
-    // API call
-    transpoleInstance.getNext('18', '773', 'R').then(handleSuccess, handleError);
+    /**
+     * APIs calls
+     */
 
-    vlille.stations().then(function (data) {
-        console.log(data);
-    }, function (error) {
-        console.error(error);
-    });
+    transpoleInstance.getNext('18', '773', 'R').then(handleTranspoleSuccess, handleError);
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            vlille.closestStations({
+                lat: position.coords.latitude,
+                lon: position.coords.longitude
+            }).then(handlerVlilleSuccess, handleError);
+        });
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+    }
 }());

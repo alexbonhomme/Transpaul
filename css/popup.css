@@ -13,52 +13,17 @@ body {
 }
 
 .transpaul-loader {
-	margin: -10px;
+	display: block;
+	margin: auto;
 	padding: 0;
 	vertical-align: middle;
-	width: 380px;
+	width: 64px;
 }
 
-.transpaul-no-bus {
-	margin: -10px;
-	padding: 0;
-	width: 380px;
-}
-.transpaul-no-bus > img {
-	width: 100%;
-	vertical-align: middle;
-}
-.transpaul-no-bus > p {
-	margin: -50px 0 0 0;
-	color: white;
-	font-size: 1.8em;
-	text-align: center;
-	text-shadow:1px 1px 3px #333;
-}
-
-.transpaul-stopname {
-	font-weight: bold;
-	font-size: 1.15em;
-}
-
-.transpaul-direction {
+.transpaul-loader-text {
+	color: #999;
 	font-size: 0.8em;
-}
-
-.transpaul-nexts {
-	margin-top: 15px;
-	padding-top: 10px;
-	border-top: 1px solid #c2c2c2;
-	font-size: 1em;
-}
-
-.transpaul-next {
-	padding: 5px 20px;
-}
-
-.transpaul-remaining-number {
-	font-size: 1.4em;
-	font-weight: bold;
+	text-align: center;
 }
 
 .transpaul-danger {
@@ -67,4 +32,61 @@ body {
 
 .transpaul-warning {
 	color: #af9540;
+}
+
+.transpaul-icon {
+	width: 45px;
+}
+
+.transpaul-title {
+	font-weight: bold;
+	font-size: 1.15em;
+}
+
+.transpaul-subtitle {
+	font-size: 0.8em;
+	color: #999;
+}
+
+/**
+ * Transpole.js (Bus)
+ */
+.transpole-no-bus {
+	margin: -10px;
+	padding: 0;
+	width: 380px;
+}
+.transpole-no-bus > img {
+	width: 100%;
+	vertical-align: middle;
+}
+.transpole-no-bus > p {
+	margin: -50px 0 0 0;
+	color: white;
+	font-size: 1.8em;
+	text-align: center;
+	text-shadow:1px 1px 3px #333;
+}
+
+.transpole-nexts {
+	margin-top: 15px;
+	padding-top: 10px;
+	border-top: 1px solid #c2c2c2;
+	font-size: 1em;
+}
+
+.transpole-next {
+	padding: 5px 20px;
+}
+
+.transpole-remaining-number {
+	font-size: 1.4em;
+	font-weight: bold;
+}
+
+/**
+ * vlille.js
+ */
+.vlille-data {
+	margin-top: 1.5em;
 }
