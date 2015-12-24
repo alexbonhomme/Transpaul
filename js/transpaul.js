@@ -6,6 +6,31 @@
     var transpoleInstance = transpole();
 
     /**
+     * Extends an object from an other.
+     * @param  {Object} objDest [description]
+     * @param  {Object} objSrc  [description]
+     * @return {Object}         [description]
+     */
+    function extend(objDest, objSrc) {
+        var i,
+            len,
+            prop;
+
+        for (prop in objSrc) {
+            if (objSrc.hasOwnProperty(prop)) {
+                objDest[prop] = objSrc[prop];
+            }
+        }
+
+        return objDest;
+    }
+
+
+    /**
+     * Transpole
+     */
+
+    /**
      * Mustache formatter to apply specific class according to `remaining` value.
      * @return {Function} [description]
      */
@@ -76,23 +101,45 @@
     }
 
     /**
-     * Extend an object from an other.
-     * @param  {Object} objDest [description]
-     * @param  {Object} objSrc  [description]
-     * @return {Object}         [description]
+     * V'Lille
      */
-    function extend(objDest, objSrc) {
-        var i,
-            len,
-            prop;
 
-        for (prop in objSrc) {
-            if (objSrc.hasOwnProperty(prop)) {
-                objDest[prop] = objSrc[prop];
+    /**
+     * Mustache formatter to apply specific class according to `bikes` value.
+     * @return {Function} [description]
+     */
+    function bikesFormatter() {
+        return function (text, render) {
+            var value = parseInt(render(text), 10),
+                formatterClass = '',
+                remainingHuman;
+
+            if (value <= 5) {
+                formatterClass += ' transpaul-strong transpaul-danger';
+            } else if (value <= 10) {
+                formatterClass += ' transpaul-strong transpaul-warning';
             }
-        }
 
-        return objDest;
+            return '<span class="' + formatterClass + '">' + value + '</span>';
+        };
+    }
+
+    /**
+     * Formats V'Lille data for Mustache template.
+     * @param  {Object} data [description]
+     * @return {Object}      [description]
+     */
+    function formatVlilleData(data) {
+        var stations = data.map(function (station) {
+            station.distance = Math.round(station.distance);
+
+            return station;
+        });
+
+        return {
+            stations: stations,
+            formatter: bikesFormatter
+        };
     }
 
     /**
@@ -115,14 +162,10 @@
             for (i = 0, len = stations.length; i < len; i += 1) {
                 // merge new data
                 extend(stations[i], data[i]);
-
-                stations[i].distance = Math.round(stations[i].distance);
             }
 
             // update DOM
-            element.innerHTML = Mustache.render(template, {
-                stations: stations
-            });
+            element.innerHTML = Mustache.render(template, formatVlilleData(stations));
         }, handleError);
     }
 

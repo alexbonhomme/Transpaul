@@ -27,11 +27,15 @@ body {
 }
 
 .transpaul-danger {
-	color: #8c3a2b;
+	color: #F44336;
 }
 
 .transpaul-warning {
-	color: #af9540;
+	color: #FF9800;
+}
+
+.transpaul-strong {
+	font-weight: bold;
 }
 
 .transpaul-icon {
@@ -107,4 +111,8 @@ body {
 	display: inline-block;
 	margin-top: -4px;
 	width: 25px;
+	vertical-align: middle;
+}
+.vlille-quantity {
+	vertical-align: middle;
 }
