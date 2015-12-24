@@ -10,7 +10,9 @@
     "default_popup": "popup.html"
   },
   "permissions": [
+    "geolocation",
     "https://www.transpole.fr/",
-    "http://www.transpole.mobi/"
+    "http://www.transpole.mobi/",
+    "http://vlille.fr/"
   ]
 }

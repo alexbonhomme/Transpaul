@@ -1,7 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
-	min-width: 380px;
+	min-width: 420px;
 	height: auto;
 	overflow-x: hidden;
 	font-size: 1em;
@@ -13,58 +13,122 @@ body {
 }
 
 .transpaul-loader {
-	margin: -10px;
+	display: block;
+	margin: auto;
 	padding: 0;
 	vertical-align: middle;
-	width: 380px;
+	width: 64px;
 }
 
-.transpaul-no-bus {
-	margin: -10px;
-	padding: 0;
-	width: 380px;
-}
-.transpaul-no-bus > img {
-	width: 100%;
-	vertical-align: middle;
-}
-.transpaul-no-bus > p {
-	margin: -50px 0 0 0;
-	color: white;
-	font-size: 1.8em;
+.transpaul-loader-text {
+	color: #999;
+	font-size: 0.8em;
 	text-align: center;
-	text-shadow:1px 1px 3px #333;
 }
 
-.transpaul-stopname {
+.transpaul-danger {
+	color: #F44336;
+}
+
+.transpaul-warning {
+	color: #FF9800;
+}
+
+.transpaul-strong {
+	font-weight: bold;
+}
+
+.transpaul-icon {
+	float: right;
+	width: 40px;
+}
+
+.transpaul-title {
 	font-weight: bold;
 	font-size: 1.15em;
 }
 
-.transpaul-direction {
+.transpaul-subtitle {
 	font-size: 0.8em;
+	color: #999;
 }
 
-.transpaul-nexts {
-	margin-top: 15px;
-	padding-top: 10px;
+/**
+ * Transpole.js (Bus)
+ */
+.transpole-no-bus {
+	margin: -10px;
+	padding: 0;
+	width: 380px;
+}
+.transpole-no-bus > img {
+	width: 100%;
+	vertical-align: middle;
+}
+.transpole-no-bus > p {
+	margin: -50px 0 0 0;
+	color: white;
+	font-size: 1.8em;
+	text-align: center;
+	text-shadow: 1px 1px 3px #333;
+}
+
+.transpole-nexts {
+	margin-top: 10px;
+	padding-top: 15px;
 	border-top: 1px solid #c2c2c2;
 	font-size: 1em;
 }
 
-.transpaul-next {
+.transpole-next {
 	padding: 5px 20px;
 }
 
-.transpaul-remaining-number {
+.transpole-remaining-number {
 	font-size: 1.4em;
 	font-weight: bold;
 }
 
-.transpaul-danger {
-	color: #8c3a2b;
+/**
+ * vlille.js
+ */
+.vlille-data {
+	margin-top: 1.6em;
 }
 
-.transpaul-warning {
-	color: #af9540;
+.vlille-closest {
+	margin-top: 10px;
+	padding-top: 15px;
+	border-top: 1px solid #c2c2c2;
+	font-size: 1em;
+}
+
+.vlille-station {
+	padding: 4px 0;
+}
+
+.vlille-station-address {
+	font-size: 0.7em;
+	color: #999;
+	text-transform: lowercase;
+}
+.vlille-station-address:first-letter {
+	text-transform: uppercase;
+}
+
+.vlille-station-distance {
+	font-size: 0.9em;
+	padding: 5px 0;
+}
+
+.vlille-icon {
+	display: inline-block;
+	width: 25px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+.vlille-quantity {
+	margin-left: 2px;
+	font-size: 1.5em;
+	vertical-align: middle;
 }
