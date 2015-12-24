@@ -13,6 +13,7 @@
     "url": "https://github.com/blckshrk/Transpaul/issues"
   },
   "dependencies": {
+    "d.js": "^0.7.3",
     "moment": "^2.10.6",
     "mustache": "^2.2.0",
     "purecss": "^0.6.0"

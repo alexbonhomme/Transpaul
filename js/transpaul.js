@@ -1,6 +1,3 @@
-/*jslint browser:true*/
-/*global transpole, vlille, Mustache, moment*/
-
 (function () {
     'use strict';
 
@@ -79,31 +76,32 @@
     }
 
     /**
-     * Formats Transpole data for Mustache template.
-     * @param  {Object} data [description]
-     * @return {Object}      [description]
-     */
-    function formatVlilleData(data) {
-        var stations = data.map(function (station) {
-            station.distance = Math.round(station.distance);
-
-            return station;
-        });
-
-        return {
-            stations: stations
-        };
-    }
-
-    /**
      * Updates DOM with V'Lille data using Mustache template.
      * @param  {Object} data [description]
      */
     function handlerVlilleSuccess(data) {
         var element = document.getElementById('vlille-data'),
-            template = document.getElementById('vlille.mst').innerHTML;
+            template = document.getElementById('vlille.mst').innerHTML,
+            promises = [],
+            i,
+            len;
 
-        element.innerHTML = Mustache.render(template, formatVlilleData(data));
+        // get stations details
+        for (i = 0, len = data.length; i < len; i += 1) {
+            promises.push(vlille.station(data[i].id));
+        }
+
+        D.all(promises).then(function (stations) {
+            // merge both data (eg. distances)
+            for (i = 0, len = stations.length; i < len; i += 1) {
+                stations[i].distance = Math.round(data[i].distance);
+            }
+
+            // update DOM
+            element.innerHTML = Mustache.render(template, {
+                stations: stations
+            });
+        }, handleError);
     }
 
     /**
