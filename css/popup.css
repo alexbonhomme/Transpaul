@@ -104,6 +104,7 @@ body {
 }
 
 .vlille-icon {
+	display: inline-block;
 	margin-top: -4px;
 	width: 25px;
 }

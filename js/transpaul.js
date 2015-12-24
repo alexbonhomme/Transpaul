@@ -76,6 +76,26 @@
     }
 
     /**
+     * Extend an object from an other.
+     * @param  {Object} objDest [description]
+     * @param  {Object} objSrc  [description]
+     * @return {Object}         [description]
+     */
+    function extend(objDest, objSrc) {
+        var i,
+            len,
+            prop;
+
+        for (prop in objSrc) {
+            if (objSrc.hasOwnProperty(prop)) {
+                objDest[prop] = objSrc[prop];
+            }
+        }
+
+        return objDest;
+    }
+
+    /**
      * Updates DOM with V'Lille data using Mustache template.
      * @param  {Object} data [description]
      */
@@ -92,9 +112,11 @@
         }
 
         D.all(promises).then(function (stations) {
-            // merge both data (eg. distances)
             for (i = 0, len = stations.length; i < len; i += 1) {
-                stations[i].distance = Math.round(data[i].distance);
+                // merge new data
+                extend(stations[i], data[i]);
+
+                stations[i].distance = Math.round(stations[i].distance);
             }
 
             // update DOM
