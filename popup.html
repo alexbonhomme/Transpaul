@@ -7,29 +7,39 @@
         <link rel="stylesheet" href="css/popup.css">
     </head>
     <body>
-        <div id="transpaul" class="transpaul">
-            <img class="transpaul-loader" src="assets/boobs_loader.jpg">
+        <div class="transpaul">
+            <!-- Bus data -->
+            <div id="transpole-data" class="transpole-data">
+                <img class="transpaul-loader" src="assets/circle_loader.gif">
+                <p class="transpaul-loader-text">Récupération des données Transpole</p>
+            </div>
+
+            <!-- v'lille data -->
+            <div id="vlille-data" class="vlille-data">
+                <img class="transpaul-loader" src="assets/circle_loader.gif">
+                <p class="transpaul-loader-text">Récupération des données V'Lille</p>
+            </div>
         </div>
 
-        <script id="template.mst" type="x-tmpl-mustache">
+        <script id="transpole.mst" type="x-tmpl-mustache">
             <div class="pure-g">
                 <div class="pure-u-4-5">
-                    <div class="transpaul-stopname">{{stopName}}</div>
-                    <div class="transpaul-direction">{{direction}}</div>
+                    <div class="transpaul-title">{{stopName}}</div>
+                    <div class="transpaul-subtitle">{{direction}}</div>
                 </div>
                 <div class="pure-u-1-5">
-                    <div class="pure-g transpaul-line-info">
+                    <div class="pure-g transpole-line-info">
                         <div class="pure-u-1-2">
-                            <img class="pure-img" src="http://transpole.mobi/images/subsidiary/modes_border_{{lineMode}}@2x.png">
+                            <img class="pure-img transpaul-icon" src="http://transpole.mobi/images/subsidiary/modes_border_{{lineMode}}@2x.png">
                         </div>
                         <div class="pure-u-1-2">
-                            <img class="pure-img" src="http://transpole.mobi/images/subsidiary/lines_pictos/lines_border_{{lineName}}@2x.png">
+                            <img class="pure-img transpaul-icon" src="http://transpole.mobi/images/subsidiary/lines_pictos/lines_border_{{lineName}}@2x.png">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="transpaul-nexts">
+            <div class="transpole-nexts">
                 {{#nexts}}
                 <div>
                     <div class="pure-g">
@@ -37,19 +47,54 @@
                             {{#remainingFormatter}} {{remaining}} {{/remainingFormatter}}
                         </div>
                         <div class="pure-u-3-4">
-                            <div class="transpaul-next">{{next}}</div>
+                            <div class="transpole-next">{{next}}</div>
                         </div>
                     </div>
-
                 </div>
                 {{/nexts}}
             </div>
         </script>
 
+        <script id="vlille.mst" type="x-tmpl-mustache">
+            <div class="pure-g">
+                <div class="pure-u-4-5">
+                    <div class="transpaul-title">V'Lille</div>
+                    <div class="transpaul-subtitle">Stations les plus proches</div>
+                </div>
+                <div class="pure-u-1-5">
+                    <img class="pure-img transpaul-icon" src="assets/logo_vlille.jpg">
+                </div>
+            </div>
+
+            <div class="vlille-closest">
+                {{#stations}}
+                <div class="vlille-station">
+                    <div class="pure-g">
+                        <div class="pure-u-1-2">
+                            <a target="_blank" href="http://maps.google.com/maps?z=18&q={{lat}},{{lng}}">{{name}}</a>
+                            <div class="vlille-station-address">{{adress}}</div>
+                        </div>
+                        <div class="pure-u-1-6">
+                            <div class="vlille-station-distance">{{distance}} m</div>
+                        </div>
+                        <div class="pure-u-1-6">
+                            {{#bikesFormatter}} {{bikes}} {{/bikesFormatter}}
+                        </div>
+                        <div class="pure-u-1-6">
+                            {{#attachsFormatter}} {{attachs}} {{/attachsFormatter}}
+                        </div>
+                    </div>
+                </div>
+                {{/stations}}
+            </div>
+        </script>
+
         <script src="node_modules/mustache/mustache.min.js"></script>
         <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+        <script src="node_modules/d.js/lib/D.min.js"></script>
 
         <script src="js/transpole.js"></script>
+        <script src="js/vlille.js"></script>
         <script src="js/transpaul.js"></script>
     </body>
 </html>
