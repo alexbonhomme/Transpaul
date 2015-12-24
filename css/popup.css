@@ -107,12 +107,27 @@ body {
 	padding: 4px 0;
 }
 
+.vlille-station-address {
+	font-size: 0.7em;
+	color: #999;
+	text-transform: lowercase;
+}
+.vlille-station-address:first-letter {
+	text-transform: uppercase;
+}
+
+.vlille-station-distance {
+	font-size: 0.9em;
+	padding: 5px 0;
+}
+
 .vlille-icon {
 	display: inline-block;
-	margin-top: -4px;
 	width: 25px;
 	vertical-align: middle;
 }
 .vlille-quantity {
+	margin-left: 2px;
+	font-size: 1.5em;
 	vertical-align: middle;
 }

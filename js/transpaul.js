@@ -111,7 +111,7 @@
     function bikesFormatter() {
         return function (text, render) {
             var value = parseInt(render(text), 10),
-                formatterClass = '',
+                formatterClass = 'vlille-quantity',
                 remainingHuman;
 
             if (value <= 5) {
