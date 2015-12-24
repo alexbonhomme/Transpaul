@@ -78,12 +78,10 @@
                             <div class="vlille-station-distance">{{distance}} m</div>
                         </div>
                         <div class="pure-u-1-6">
-                            <img src="assets/bicycle.svg" class="pure-img vlille-icon">
-                            {{#formatter}} {{bikes}} {{/formatter}}
+                            {{#bikesFormatter}} {{bikes}} {{/bikesFormatter}}
                         </div>
                         <div class="pure-u-1-6">
-                            <img src="assets/parking_bicycle.svg" class="pure-img vlille-icon">
-                            {{attachs}}
+                            {{#attachsFormatter}} {{attachs}} {{/attachsFormatter}}
                         </div>
                     </div>
                 </div>

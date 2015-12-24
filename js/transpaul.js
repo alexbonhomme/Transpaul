@@ -110,17 +110,33 @@
      */
     function bikesFormatter() {
         return function (text, render) {
-            var value = parseInt(render(text), 10),
-                formatterClass = 'vlille-quantity',
-                remainingHuman;
+            var value = parseInt(render(text), 10);
 
             if (value <= 5) {
-                formatterClass += ' transpaul-strong transpaul-danger';
+                return '<img src="assets/bicycle-danger.svg" class="pure-img vlille-icon"><span class="vlille-quantity transpaul-strong transpaul-danger">' + value + '</span>';
             } else if (value <= 10) {
-                formatterClass += ' transpaul-strong transpaul-warning';
+                return '<img src="assets/bicycle-warning.svg" class="pure-img vlille-icon"><span class="vlille-quantity transpaul-strong transpaul-warning">' + value + '</span>';
             }
 
-            return '<span class="' + formatterClass + '">' + value + '</span>';
+            return '<img src="assets/bicycle.svg" class="pure-img vlille-icon"><span class="vlille-quantity">' + value + '</span>';
+        };
+    }
+
+    /**
+     * Mustache formatter to apply specific class according to `attachs` value.
+     * @return {Function} [description]
+     */
+    function attachsFormatter() {
+        return function (text, render) {
+            var value = parseInt(render(text), 10);
+
+            if (value <= 5) {
+                return '<img src="assets/parking_bicycle-danger.svg" class="pure-img vlille-icon"><span class="vlille-quantity transpaul-strong transpaul-danger">' + value + '</span>';
+            } else if (value <= 10) {
+                return '<img src="assets/parking_bicycle-warning.svg" class="pure-img vlille-icon"><span class="vlille-quantity transpaul-strong transpaul-warning">' + value + '</span>';
+            }
+
+            return '<img src="assets/parking_bicycle.svg" class="pure-img vlille-icon"><span class="vlille-quantity">' + value + '</span>';
         };
     }
 
@@ -138,7 +154,8 @@
 
         return {
             stations: stations,
-            formatter: bikesFormatter
+            bikesFormatter: bikesFormatter,
+            attachsFormatter: attachsFormatter
         };
     }
 
