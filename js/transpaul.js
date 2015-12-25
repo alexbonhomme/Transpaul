@@ -3,7 +3,10 @@
 
     moment.locale('fr');
 
-    var transpoleInstance = transpole();
+    var transpoleInstance = transpole(),
+        vlilleInstance = new Vlille({
+            apiProxyUrl: 'http://localhost:8001/'
+        });
 
     /**
      * Extends an object from an other.
@@ -172,7 +175,7 @@
 
         // get stations details
         for (i = 0, len = data.length; i < len; i += 1) {
-            promises.push(vlille.station(data[i].id));
+            promises.push(vlilleInstance.station(data[i].id));
         }
 
         D.all(promises).then(function (stations) {
@@ -200,7 +203,7 @@
     // requeste the 3 closest stations according to the current position
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
-            vlille.closestStations({
+            vlilleInstance.closestStations({
                 lat: position.coords.latitude,
                 lon: position.coords.longitude
             }, 3).then(handlerVlilleSuccess, handleError);
