@@ -3,7 +3,9 @@
 
     moment.locale('fr');
 
-    var transpoleInstance = transpole(),
+    var transpoleInstance = new Transpole({
+            apiProxyUrl: 'http://localhost:8000/'
+        }),
         vlilleInstance = new Vlille({
             apiProxyUrl: 'http://localhost:8001/'
         });
@@ -213,5 +215,5 @@
     }
 
     // Bus line 18 stop République
-    transpoleInstance.getNext('18', '773', 'R').then(handleTranspoleSuccess, handleError);
+    transpoleInstance.next('18', '773', 'R').then(handleTranspoleSuccess, handleError);
 }());
