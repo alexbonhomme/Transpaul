@@ -215,5 +215,5 @@
     }
 
     // Bus line 18 stop République
-    transpoleInstance.next('18', '773', 'R').then(handleTranspoleSuccess, handleError);
+    transpoleInstance.next('transpole:Line:18', 'transpole:StopArea:773', 'R').then(handleTranspoleSuccess, handleError);
 }());
